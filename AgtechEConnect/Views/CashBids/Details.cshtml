@@ -1,0 +1,95 @@
+﻿@model AgtechEConnect.Core.ViewModels.CashBidsViewModel
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>CashBid Grid</h2>
+
+@using (Html.BeginForm("Index", "CashBids"))
+{
+	<div class="form-group">
+		@Html.LabelFor(m => m.LocationId)
+		@Html.DropDownListFor(m => m.LocationId,
+											   new SelectList(Model.CashBidLocations, "LocationID", "ShortName"),
+											   "-",
+											   new { @Id = "locations", @class = "form-control js-select" }
+										   )
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(m => m.CommodityId)
+		@Html.DropDownListFor(m => m.CommodityId,
+												new SelectList(Model.CashBidCommodities, "CommodityID", "DisplayName"),
+												"-",
+												new { @Id = "commodities", @class = "form-control js-select" }
+											)
+	</div>
+}
+
+<span class="params" data-commodity-id="@Model.CommodityId" hidden></span>
+<span class="params" data-location-id="@Model.LocationId" hidden></span>
+
+<div id="cashBidsPerPeriod-grid">
+</div>
+
+@section scripts
+{
+	<script type="text/x-template" id="cashBidGrid-template">
+		<div class="cashBids-grid">
+			@*TODO: FORMAT request date*@
+			<p>Cash Bids in <%= cashBids[0].uomCode %> and <%= cashBids[0].currencyDescription %> as of <%= cashBids[0].priceRequestDate %></p>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Delivery Period</th>
+						<th>Cash Price</th>
+						<th>Basis</th>
+						<th>Month</th>
+						<th>Future Price</th>
+						<th>Futures Change</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					_.each(cashBids, function(cashBid){ %>
+					<tr>
+						<td><%= cashBid.deliveryStartDate %> - <%= cashBid.deliveryEndDate %></td>
+						<td><%= cashBid.cashPrice %></td>
+						<td><%= cashBid.basisPrice %></td>
+						<td><%= cashBid.symbolMonthYear %></td>
+						<td><%= cashBid.futuresPrice %></td>
+						<td><%= cashBid.delta %></td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			$(".js-select").change(function () {
+				var location = $("#locations").val();
+				var commodity = $("#commodities").val();
+
+				if (location != '' && commodity != '') {
+					var query = "commodity=" + commodity + "&location=" + location;
+
+					$.getJSON("/api/cashbids/?" + query, function (cashBids) {
+						$("#cashBidsPerPeriod-grid").html(function () {
+							if (cashBids.length == 0) {
+								return "<p>There are currently no bids available</p>";
+							}
+							var compiled = _.template($("#cashBidGrid-template").html());
+							var html = compiled({ cashBids: cashBids });
+							//html = "<p>PPPP</p>"
+							return html;
+							
+						});
+					});
+				}
+			});
+		});
+	</script>
+}
