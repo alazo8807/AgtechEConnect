@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AgtechEConnect.Core;
+using AgtechEConnect.Core.Dtos.Contract;
+using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Routing;
-using AgtechEConnect.Core;
-using AgtechEConnect.Core.Dtos.Contract;
 
 namespace AgtechEConnect.Controllers.Api
 {
@@ -26,6 +27,8 @@ namespace AgtechEConnect.Controllers.Api
 		public IEnumerable<ContractDto> GetContracts()
 		{
 			var contracts = _unitOfWork.Contracts.GetAll().ToList();
+
+			var userId = User.Identity.GetUserId();
 
 			var dto = new List<ContractDto>();
 

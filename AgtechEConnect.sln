@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgtechEConnect", "AgtechEConnect\AgtechEConnect.csproj", "{D2C04AF1-8BD9-4598-9971-472D8AC6F0FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgtechEConnect.Tests", "AgtechEConnect.Tests\AgtechEConnect.Tests.csproj", "{B2916086-BEAD-480E-BEA6-7C2EE016ABD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D2C04AF1-8BD9-4598-9971-472D8AC6F0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C04AF1-8BD9-4598-9971-472D8AC6F0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C04AF1-8BD9-4598-9971-472D8AC6F0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2916086-BEAD-480E-BEA6-7C2EE016ABD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2916086-BEAD-480E-BEA6-7C2EE016ABD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2916086-BEAD-480E-BEA6-7C2EE016ABD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2916086-BEAD-480E-BEA6-7C2EE016ABD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
