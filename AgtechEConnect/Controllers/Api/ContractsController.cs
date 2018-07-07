@@ -1,6 +1,7 @@
 ﻿using AgtechEConnect.Core;
 using AgtechEConnect.Core.Dtos.Contract;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -34,19 +35,62 @@ namespace AgtechEConnect.Controllers.Api
 
 			foreach (var c in contracts)
 			{
+				var url = string.Empty;
+
+				try
+				{
+					url = UrlHelper.Link("DefaultApi", new { id = c.ContractId });
+				}
+				catch (Exception)
+				{
+					url = string.Empty;
+				}
+
 				dto.Add(new ContractDto
 				{
-					Url = UrlHelper.Link("DefaultApi", new { id = c.ContractId }),
+					Url = url,
 					ContractId = c.ContractId,
 					ContractNo = c.ContractNo,
 					CommodityId = c.CommodityId,
 					ContractDate = c.ContractDate,
 					LocationId = c.LocationId,
-					VendorCustomerId = c.VendorCustomerId,
+					VendorCustomerId = c.VendorCustomerId
 				});
 			}
 
 			return dto;
+		}
+
+		public IHttpActionResult Get(int Id)
+		{
+			var contractInDb = _unitOfWork.Contracts.Get(Id);
+
+			if (contractInDb == null)
+				return NotFound();
+
+			var url = string.Empty;
+
+			try
+			{
+				url = UrlHelper.Link("DefaultApi", new { id = contractInDb.ContractId });
+			}
+			catch (Exception)
+			{
+				url = string.Empty;
+			}
+
+			var contractDto = new ContractDto()
+			{
+				Url = url,
+				ContractId = contractInDb.ContractId,
+				ContractNo = contractInDb.ContractNo,
+				CommodityId = contractInDb.CommodityId,
+				ContractDate = contractInDb.ContractDate,
+				LocationId = contractInDb.LocationId,
+				VendorCustomerId = contractInDb.VendorCustomerId
+			};
+
+			return Ok(contractDto);
 		}
 
 		public UrlHelper UrlHelper //Using defered execution. At this point the request should exist. 
