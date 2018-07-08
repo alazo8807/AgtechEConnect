@@ -1,10 +1,10 @@
 ﻿using AgtechEConnect.Core.Models;
-using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace AgtechEConnect.Persistence
 {
-	public class AgtechDbContext : IdentityDbContext<ApplicationUser>
+	public class AgtechDbContext : IdentityDbContext<ApplicationUser>, IAgtechDbContext
 	{
 		public AgtechDbContext()
 			: base(Constants.AGTECH_CONNECTIONSTRING_NAME, throwIfV1Schema: false)

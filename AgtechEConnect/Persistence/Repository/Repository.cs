@@ -1,19 +1,18 @@
-﻿using System;
+﻿using AgtechEConnect.Core.Repositories;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using AgtechEConnect.Core.Repositories;
 
 namespace AgtechEConnect.Persistence.Repository
 {
 	public class Repository<TEntity> :IRepository<TEntity> where TEntity : class
 	{
-		protected DbContext _context;
+		protected AgtechDbContext _context;
 
-		public Repository(DbContext Context)
+		public Repository(IAgtechDbContext context)
 		{
-			_context = Context;
+			_context = (AgtechDbContext)context;
 		}
 
 		public TEntity Get(object keyValue)

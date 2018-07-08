@@ -253,6 +253,7 @@
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\IdentityModels.cs" />
     <Compile Include="Core\Models\ManageViewModels.cs" />
+    <Compile Include="Persistence\IAgtechDbContext.cs" />
     <Compile Include="Persistence\Repository\CashBidCommoditiesRepository.cs" />
     <Compile Include="Persistence\Repository\CashBidLocationsRepository.cs" />
     <Compile Include="Persistence\Repository\CashBidRepository.cs" />

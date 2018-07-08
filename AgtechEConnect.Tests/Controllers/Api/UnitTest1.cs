@@ -18,7 +18,8 @@ namespace AgtechEConnect.Tests.Controllers.Api
 		private ContractsController _controller;
 		private Mock<IContractRepository> _mockRepository;
 
-		public ContractsControllerTest()
+		[TestInitialize]
+		public void Initialize()
 		{
 			_mockRepository = new Mock<IContractRepository>();
 			var mockUoW = new Mock<IUnitOfWork>();
