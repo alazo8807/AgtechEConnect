@@ -6,7 +6,7 @@ namespace AgtechEConnect.Core.Models
 	/// <summary>
 	/// Location entity.
 	/// </summary>
-	[Table("dte_name_and_address_contact_v")]
+	[Table("dba.dte_name_and_address_contact_v")]
 	public class NameAndAddress
 	{
 		/// <summary>

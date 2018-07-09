@@ -13,13 +13,15 @@ namespace AgtechEConnect.Persistence.Repository
 		{
 		}
 
-		public AgtechDbContext AgtechContext {
-			get { return _context as AgtechDbContext; }
-		}
+		//public AgtechDbContext AgtechContext {
+		//	get { return _context as AgtechDbContext; }
+		//}
 
 		public IEnumerable<Contract> GetAllContractsWithCustomerVendorId()
 		{
-			return AgtechContext.Contracts.Include(c => c.ContractVendorCustomer).ToList();
+			return _context.Contracts.Include(c => c.ContractVendorCustomer).ToList();
+			//return _context.Contracts.ToList();
+			//return AgtechContext.Contracts.Include(c => c.Location).ToList();
 		}
 	}
 }

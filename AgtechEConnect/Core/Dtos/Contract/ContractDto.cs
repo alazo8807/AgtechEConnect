@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgtechEConnect.Core.Models;
+using System;
 
 namespace AgtechEConnect.Core.Dtos.Contract
 {
@@ -16,6 +17,6 @@ namespace AgtechEConnect.Core.Dtos.Contract
 
 		public string LocationId { get; set; }
 
-		public string VendorCustomerId { get; set; }
+		public NameAndAddress ContractVendorCustomer { get; set; }
 	}
 }

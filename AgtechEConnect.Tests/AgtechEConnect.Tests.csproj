@@ -80,7 +80,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Api\UnitTest1.cs" />
     <Compile Include="Extensions\ApiControllersExtensions.cs" />
-    <Compile Include="Persistence\Repositories\MockDbSetExtensions.cs" />
+    <Compile Include="Extensions\MockDbSetExtensions.cs" />
     <Compile Include="Persistence\Repositories\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

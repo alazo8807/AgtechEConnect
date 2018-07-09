@@ -27,7 +27,7 @@ namespace AgtechEConnect.Controllers.Api
 
 		public IEnumerable<ContractDto> GetContracts()
 		{
-			var contracts = _unitOfWork.Contracts.GetAll().ToList();
+			var contracts = _unitOfWork.Contracts.GetAllContractsWithCustomerVendorId().ToList();
 
 			var userId = User.Identity.GetUserId();
 
@@ -54,7 +54,7 @@ namespace AgtechEConnect.Controllers.Api
 					CommodityId = c.CommodityId,
 					ContractDate = c.ContractDate,
 					LocationId = c.LocationId,
-					VendorCustomerId = c.VendorCustomerId
+					ContractVendorCustomer = c.ContractVendorCustomer
 				});
 			}
 
@@ -87,7 +87,7 @@ namespace AgtechEConnect.Controllers.Api
 				CommodityId = contractInDb.CommodityId,
 				ContractDate = contractInDb.ContractDate,
 				LocationId = contractInDb.LocationId,
-				VendorCustomerId = contractInDb.VendorCustomerId
+				ContractVendorCustomer = contractInDb.ContractVendorCustomer
 			};
 
 			return Ok(contractDto);

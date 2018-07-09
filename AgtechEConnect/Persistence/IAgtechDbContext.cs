@@ -10,5 +10,7 @@ namespace AgtechEConnect.Persistence
 		DbSet<CashBid> CashBids { get; set; }
 		DbSet<Contract> Contracts { get; set; }
 		DbSet<NameAndAddress> NameAndAddress { get; set; }
+
+		DbSet<TEntity> Set<TEntity>() where TEntity : class;
 	}
 }

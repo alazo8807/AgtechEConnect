@@ -8,11 +8,11 @@ namespace AgtechEConnect.Persistence.Repository
 {
 	public class Repository<TEntity> :IRepository<TEntity> where TEntity : class
 	{
-		protected AgtechDbContext _context;
+		protected IAgtechDbContext _context;
 
 		public Repository(IAgtechDbContext context)
 		{
-			_context = (AgtechDbContext)context;
+			_context = context;
 		}
 
 		public TEntity Get(object keyValue)

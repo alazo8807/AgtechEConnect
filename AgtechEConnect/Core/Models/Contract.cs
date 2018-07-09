@@ -160,6 +160,8 @@ namespace AgtechEConnect.Core.Models
 		[Column("contract_location")]
 		public string LocationId { get; set; }
 
+		public NameAndAddress Location { get; set; }
+
 		/// <summary>
 		/// Market Option Month Code  (s1_contract.market_month)
 		/// </summary>
